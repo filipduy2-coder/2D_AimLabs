@@ -27,7 +27,6 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener {
     boolean gameOver = false;
 
     Timer gameLoop;
-    Timer targetTimer;
 
     boolean isClicked;
 
@@ -41,13 +40,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener {
         gameLoop = new Timer(1000/120, this);
         gameLoop.start();
 
-        targetTimer = new Timer(2000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                placeTarget();
-            }
-        });
-        targetTimer.start();
+        placeTarget();
 
         //  setCursor(getToolkit().createCustomCursor(
         //      new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "blank"));
@@ -62,10 +55,12 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+    void move
     boolean collision(Block a) {
         centerPoint = new Point(centerX, centerY);
         return a.getBounds().contains(centerPoint);
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
