@@ -2,17 +2,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main {
-    public static void main(String[] args) throws AWTException {
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(1280, 720);
-        window.setResizable(false);
-        window.setTitle("2D AimLabs");
-        window.setLocationRelativeTo(null);
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                JFrame frame = new JFrame("Aim Trainer");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(1280, 720);
+                frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
 
-        GameWindow gameWindow = new GameWindow();
-        window.setJMenuBar(gameWindow.menuBar);
-        window.add(gameWindow);
-        window.setVisible(true);
+                GameWindow gameWindow = new GameWindow(frame);
+                frame.setJMenuBar(gameWindow.getMenuBar());
+                frame.add(gameWindow);
+                frame.setVisible(true);
+
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

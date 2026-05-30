@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A window that displays all saved score from the score file in a table
+ * Allows the user to clear all scores.
+ */
 public class ScoreWindow extends JFrame {
 
     JTable table;
@@ -24,6 +28,10 @@ public class ScoreWindow extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Reads all score entries from the file and stores them in {@code data}.
+     * Lines with fewer than 2 fields are skipped
+     */
     private void loadData() {
         data = new ArrayList<>();
 
@@ -42,6 +50,7 @@ public class ScoreWindow extends JFrame {
         }
     }
 
+    // Builds and arrange all UI components
     private void buildUI() {
         String[] columns = {"Score", "Date"};
         String[][] tableData = data.toArray(new String[0][]);
@@ -67,6 +76,9 @@ public class ScoreWindow extends JFrame {
         add(bottom, BorderLayout.SOUTH);
     }
 
+    /**
+     * Clear the score file and refreshes the table
+     */
     private void clearScores() {
         try {
             FileWriter fw = new FileWriter("scores.txt", false);
